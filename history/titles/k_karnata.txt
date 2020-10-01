@@ -6,7 +6,7 @@ k_karnata = {
 	1120.1.1 = {
 		holder = 74577
 		insert_title_history = d_gangavadi
-## NoEMP ###		liege = e_deccan
+		## NoEMP ### liege = e_deccan
 	}
 	1141.1.1 = {
 		holder = 74578
@@ -190,7 +190,7 @@ c_kalyani = {
 	}
 	1042.1.1 = {
 		liege = k_maharastra
-		holder = 74441
+		holder = 74458
 	}
 	1068.1.1 = {
 		holder = 74442
@@ -967,7 +967,7 @@ c_uchangidurga = {
 		holder = 74403
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1027,7 +1027,7 @@ c_gutti = {
 		holder = 74401
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1118,7 +1118,7 @@ c_adoni = {
 		holder = 74403
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1209,7 +1209,7 @@ c_banavasi = {
 		holder = 74798
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1318,7 +1318,7 @@ c_idatarainadu = {
 		holder = 74401
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1385,7 +1385,7 @@ c_vatapi = {
 		holder = 74401
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1464,7 +1464,7 @@ c_vaijayanti = {
 		holder = 74401
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }
 
@@ -1543,6 +1543,6 @@ c_koppam = {
 		holder = 74401
 	}
 	1337.1.1 = {
-## NoEMP ###		liege = e_deccan
+		liege = e_deccan
 	}
 }

@@ -6,7 +6,7 @@ k_lotharingia = {
 	#Merovingians
 	481.1.1 = {
 		holder = 168673 #Clovis Ier
-## NoEMP ###		de_jure_liege = e_france
+		## MoEMP ### de_jure_liege = e_france
 	}
 	511.11.27 = {
 		holder = 168674 #Thierry Ier
@@ -82,7 +82,7 @@ k_lotharingia = {
 		holder = 144999 #Carloman I
 	}
 	769.1.1 = {
-## NoEMP ###		de_jure_liege = e_france
+		## NoEMP ### de_jure_liege = e_france
 	}
 	771.12.4 = {
 		holder = 6392 #Charlemagne
@@ -95,7 +95,7 @@ k_lotharingia = {
 		name = LOTHARINGIA
 	}
 	867.1.1 = {
-## NoEMP ###		de_jure_liege = e_germany
+		## NoEMP ### de_jure_liege = e_germany
 	}
 	869.8.8 = {
 		holder = 90104 #Charles I the Bald

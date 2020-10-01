@@ -24,13 +24,13 @@ k_frisia = {
 		holder = 0 # Death of last Frisian King
 	}
 	769.1.1 = {
-## NoEMP ###		de_jure_liege = e_france
+		## NoEMP ### de_jure_liege = e_france
 	}
 	775.1.1 = {
 		holder = 0 # Charlemagne officially makes Frisia part of the french Realm
 	}
 	867.1.1 = {
-## NoEMP ###		de_jure_liege = e_germany
+		## NoEMP ### de_jure_liege = e_germany
 	}
 	962.2.2 = {
 		de_jure_liege = e_hre
@@ -306,11 +306,9 @@ c_zeeland = {
 		holder = 106522 #Floris I
 	}
 	1061.6.28 = {
-		liege = "d_flanders"
 		holder = 368 #Robert van Vlaanderen
 	}
 	1071.2.22 = {
-		liege = "d_holland"
 		holder = 106520 #Dirk V
 	}
 	1091.6.17 = {

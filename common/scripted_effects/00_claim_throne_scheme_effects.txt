@@ -305,7 +305,7 @@ claim_throne_set_mythical_founder_variable_effect = {
 			OR = { # Rus
 				scope:target_title = title:k_white_rus
 				scope:target_title = title:k_ruthenia
-## NoEMP ###				scope:target_title = title:e_russia
+				scope:target_title = title:e_russia
 			}
 		}
 		set_variable = {
@@ -333,7 +333,7 @@ claim_throne_set_mythical_founder_variable_effect = {
 				scope:target_title = title:k_italy
 ## NoEMP ###				scope:target_title = title:k_romagna
 				scope:target_title = title:k_sardinia
-## NoEMP ###				scope:target_title = title:e_italy
+				scope:target_title = title:e_italy
 				scope:target_title = title:e_roman_empire
 			}
 			faith = faith:orthodox
@@ -349,7 +349,7 @@ claim_throne_set_mythical_founder_variable_effect = {
 				scope:target_title = title:k_italy
 ## NoEMP ###				scope:target_title = title:k_romagna
 				scope:target_title = title:k_sardinia
-## NoEMP ###				scope:target_title = title:e_italy
+				scope:target_title = title:e_italy
 				scope:target_title = title:e_roman_empire
 			}
 		}
@@ -388,7 +388,7 @@ claim_throne_set_mythical_founder_variable_effect = {
 				scope:target_title = title:k_navarra
 				scope:target_title = title:k_andalusia
 				scope:target_title = title:k_portugal
-## NoEMP ###				scope:target_title = title:e_spain
+				scope:target_title = title:e_spain
 			}
 			NOT = { religion = religion:islam_religion }
 		}
@@ -405,7 +405,7 @@ claim_throne_set_mythical_founder_variable_effect = {
 				scope:target_title = title:k_navarra
 				scope:target_title = title:k_andalusia
 				scope:target_title = title:k_portugal
-## NoEMP ###				scope:target_title = title:e_spain
+				scope:target_title = title:e_spain
 			}
 			religion = religion:islam_religion
 		}

@@ -1,40 +1,11 @@
 ﻿reclaim_britannia_decision_effect = {
-## NoEmp ###
-	create_title_and_vassal_change = change
-	scope:change = {
-		set_title_and_vassal_change_type = created
-	}
-	title:e_britannia = {
-		change_title_holder = {
-			holder = root
-			change = scope:change
-		}
-	}
-
-	#First: add all the kingdoms
-	title:k_england = { add_to_list = british_kingdoms }
-	title:k_scotland = { add_to_list = british_kingdoms }
-	title:k_wales = { add_to_list = british_kingdoms }
-	title:k_ireland = { add_to_list = british_kingdoms }
-	title:k_cornwall = { add_to_list = british_kingdoms }
-	every_in_list = {
-		list = british_kingdoms
-		every_in_de_jure_hierarchy = {
-			limit = {
-				tier = tier_kingdom
-			}
-			set_de_jure_liege_title = title:e_britannia
-		}
-	}
-
-
 	every_sub_realm_county = {
 		limit = {
 			NOR = {
 				culture_group = culture_group:goidelic_group
 				culture_group = culture_group:brythonic_group
 			}
-			de_jure_liege.de_jure_liege.de_jure_liege = title:e_britannia
+			title_province = { geographical_region = world_europe_west_britannia }
 		}
 		custom = british_isles.0001.custom
 		add_county_modifier = {
@@ -69,9 +40,10 @@ restore_the_danelaw_effect = {
 		}
 	}
 	give_nickname = nick_the_dane
-	create_title_and_vassal_change = change
-	scope:change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = change
+		add_claim_on_loss = no
 	}
 	title:k_danelaw = {
 		change_title_holder = {
@@ -111,6 +83,9 @@ embrace_english_culture_effect = {
 	if = {
 		limit = { any_spouse = { is_landed = no } }
 		every_spouse = {
+			limit = {
+				is_landed = no
+			}
 			set_culture = culture:english
 		}
 	}
@@ -122,10 +97,11 @@ embrace_english_culture_effect = {
 			}
 		}
 		every_close_family_member = {
-			custom = all_family_members
 			limit = {
+				is_landed = no
 				NOT = { is_spouse_of = root }
 			}
+			custom = all_family_members
 			set_culture = culture:english
 		}
 	}
@@ -163,6 +139,9 @@ embrace_english_culture_effect = {
 				if = {
 					limit = { any_spouse = { is_landed = no } }
 					every_spouse = {
+						limit = {
+							is_landed = no
+						}
 						set_culture = culture:english
 					}
 				}
@@ -232,9 +211,10 @@ form_portugal_decision_effects = {
 	}
 	custom_tooltip = form_portugal_decision_effects_de_jure_tt
 
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:k_portugal = {
 		change_title_holder = {
@@ -629,7 +609,7 @@ unite_the_western_slavs_decision_effects = {
 			#De jure shift all held west slavic titles into your primary title
 			every_in_de_jure_hierarchy = {
 				limit = { tier = tier_duchy }
-				set_de_jure_liege_title = scope:wsu_primary_title
+				set_de_jure_liege_title = scope:western_slav_uniter.primary_title
 			}
 		}
 
@@ -729,9 +709,10 @@ unite_the_slavs_decision_effects = {
 	}
 
 	#Create the title and make it primary
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_slavia = {
 		change_title_holder = {
@@ -742,6 +723,21 @@ unite_the_slavs_decision_effects = {
 	resolve_title_and_vassal_change = scope:title_change
 
 	set_primary_title_to = title:e_slavia
+	title:e_slavia = { save_scope_as = slavia } #For localisation
+
+	#Destroy the other three empires if I have them
+	if = {
+		limit = { has_title = title:e_russia }
+		destroy_title = title:e_russia
+	}
+	if = {
+		limit = { has_title = title:e_wendish_empire }
+		destroy_title = title:e_wendish_empire
+	}
+	if = {
+		limit = { has_title = title:e_carpathia }
+		destroy_title = title:e_carpathia
+	}
 
 	###Handle de jure drift and empire destruction###
 
@@ -762,104 +758,25 @@ unite_the_slavs_decision_effects = {
 	title:k_permia = { add_to_list = slavic_kingdoms }
 	title:k_hungary = { add_to_list = slavic_kingdoms }
 
-## NoEMP ###	#Has one of the 3 empires in the region? De jure drift all of it into Slavia!
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_russia }
-## NoEMP ###		title:e_russia = {
-## NoEMP ###			every_in_de_jure_hierarchy = {
-## NoEMP ###				limit = {
-## NoEMP ###					save_temporary_scope_as = russian_duchy
-## NoEMP ###					NOR = {
-## NoEMP ###						this = title:e_russia
-## NoEMP ###						any_in_list = { list = slavic_kingdoms this = scope:russian_duchy }
-## NoEMP ###					}
-## NoEMP ###					exists = holder
-## NoEMP ###					holder = scope:slav_uniter
-## NoEMP ###					tier = tier_duchy
-## NoEMP ###				}
-## NoEMP ###				add_to_list = slavic_kingdoms
-## NoEMP ###			}
-## NoEMP ###		}
-## NoEMP ###	}
-## NoEMP ###
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_wendish_empire }
-## NoEMP ###		title:e_wendish_empire = {
-## NoEMP ###			every_in_de_jure_hierarchy = {
-## NoEMP ###				limit = {
-## NoEMP ###					save_temporary_scope_as = wendish_duchy
-## NoEMP ###					NOR = {
-## NoEMP ###						this = title:e_wendish_empire
-## NoEMP ###						any_in_list = { list = slavic_kingdoms this = scope:wendish_duchy }
-## NoEMP ###					}
-## NoEMP ###					exists = holder
-## NoEMP ###					holder = scope:slav_uniter
-## NoEMP ###					tier = tier_duchy
-## NoEMP ###				}
-## NoEMP ###				add_to_list = slavic_kingdoms
-## NoEMP ###			}
-## NoEMP ###		}
-## NoEMP ###	}
-## NoEMP ###
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_carpathia }
-## NoEMP ###		title:e_carpathia = {
-## NoEMP ###			every_in_de_jure_hierarchy = {
-## NoEMP ###				limit = {
-## NoEMP ###					save_temporary_scope_as = carpathian_duchy
-## NoEMP ###					NOR = {
-## NoEMP ###						this = title:e_carpathia
-## NoEMP ###						any_in_list = { list = slavic_kingdoms this = scope:carpathian_duchy }
-## NoEMP ###					}
-## NoEMP ###					exists = holder
-## NoEMP ###					holder = scope:slav_uniter
-## NoEMP ###					tier = tier_duchy
-## NoEMP ###				}
-## NoEMP ###				add_to_list = slavic_kingdoms
-## NoEMP ###			}
-## NoEMP ###		}
-## NoEMP ###	}
+	# Inform players of the de jure drift
+	title:e_slavia = { custom_tooltip = unite_the_slavs_decision_titles_tt } #Scope change for tooltip formatting.
 
-	title:e_slavia = { save_scope_as = slavia } #for localisation
-
-	#Actually do the de jure drift
-	custom_tooltip = unite_the_slavs_decision_titles_tt
+	# Actually do the de jure drift
 	hidden_effect = {
 		every_in_list = {
 			list = slavic_kingdoms
-			limit = {
-				NOT = { this = scope:slav_uniter.primary_title }
-				scope:slav_uniter = { completely_controls = prev }
-			}
 
-			#De jure shift all held west slavic titles into your primary title
-			every_in_de_jure_hierarchy = {
-				limit = { tier = tier_kingdom }
-				set_de_jure_liege_title = scope:slav_uniter.primary_title
-			}
+			set_de_jure_liege_title = scope:slav_uniter.primary_title
 		}
 	}
-
-	#Destroy the other three empires if I have them
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_russia }
-## NoEMP ###		destroy_title = title:e_russia
-## NoEMP ###	}
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_wendish_empire }
-## NoEMP ###		destroy_title = title:e_wendish_empire
-## NoEMP ###	}
-## NoEMP ###	if = {
-## NoEMP ###		limit = { has_title = title:e_carpathia }
-## NoEMP ###		destroy_title = title:e_carpathia
-## NoEMP ###	}
 }
 
 unite_india_decision_effect = {
 	#Create the title and make it primary
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_india = {
 		change_title_holder = {
@@ -871,8 +788,20 @@ unite_india_decision_effect = {
 	set_primary_title_to = title:e_india
 
 	title:e_rajastan = { add_to_list = indian_empire }
-## NoEMP ###	title:e_deccan = { add_to_list = indian_empire }
-## NoEMP ###	title:e_bengal = { add_to_list = indian_empire }
+	## NoEMP ###	title:e_deccan = { add_to_list = indian_empire }
+	## NoEMP ###	title:e_bengal = { add_to_list = indian_empire }
+	title:k_maharastra = { add_to_list = indian_empire }
+	title:k_karnata = { add_to_list = indian_empire }
+	title:k_tamilakam = { add_to_list = indian_empire }
+	title:k_andhra = { add_to_list = indian_empire }
+	title:k_telingana = { add_to_list = indian_empire }
+	title:k_lanka = { add_to_list = indian_empire }
+	title:k_bengal = { add_to_list = indian_empire }
+	title:k_kamarupa = { add_to_list = indian_empire }
+	title:k_bihar = { add_to_list = indian_empire }
+	title:k_gondwana = { add_to_list = indian_empire }
+	title:k_orissa = { add_to_list = indian_empire }
+	title:k_pagan = { add_to_list = indian_empire }
 
 	every_in_list = {
 		list = indian_empire
@@ -889,15 +818,47 @@ unite_india_decision_effect = {
 			limit = { has_title = title:e_rajastan }
 			destroy_title = title:e_rajastan
 		}
-## NoEMP ###		if = {
-## NoEMP ###			limit = { has_title = title:e_deccan }
-## NoEMP ###			destroy_title = title:e_deccan
-## NoEMP ###		}
-## NoEMP ###		if = {
-## NoEMP ###			limit = { has_title = title:e_bengal }
-## NoEMP ###			destroy_title = title:e_bengal
-## NoEMP ###		}
+		if = {
+			limit = { has_title = title:e_deccan }
+			destroy_title = title:e_deccan
 	}
+		if = {
+			limit = { has_title = title:e_bengal }
+			destroy_title = title:e_bengal
+}
+	}
+}
+
+become_saoshyant_decision_effect = {
+	set_nickname_effect = { NICKNAME = nick_the_saoshyant }
+	add_trait = saoshyant
+	custom_tooltip = become_saoshyant_decision_decendant_trait_tooltip
+	dynasty = {
+		add_dynasty_modifier = {
+			modifier = resurging_saoshyant
+			years = 25
+		}
+	}
+	if = {
+		limit = {
+			any_held_title = {
+				tier = tier_county
+				NOT = { faith = root.faith }
+			}
+		}
+		every_held_title = {
+			custom = all_held_counties
+			limit = {
+				tier = tier_county
+				NOT = { faith = root.faith }
+			}
+			random = {
+				chance = 35
+				set_county_faith = root.faith
+			}
+		}
+	}
+	faith = { change_fervor = 15 }
 }
 
 build_grand_church_decision_effect = {
@@ -914,7 +875,7 @@ accept_cannibalism_decision_effect = {
 	custom_tooltip = faith_accept_cannibalism
 	root.faith = {
 		set_variable = {
-			name = accepted_cannibalsim
+			name = accepted_cannibalism
 			value = yes
 		}
 	}
@@ -1109,7 +1070,23 @@ convert_whole_realm_to_feudalism_effect = {
 	hidden_effect = {
 		every_realm_province = {
 			limit = { has_holding_type = tribal_holding }
+			set_variable = {
+				name = tribal_to_feudal_building_level
+				value = combined_building_level
+				days = 1
+			}
 			set_holding_type = castle_holding
+			while = {
+				limit = {
+					var:tribal_to_feudal_building_level > 1
+		}
+				generate_building = yes
+				change_variable = {
+					name = tribal_to_feudal_building_level
+					subtract = 1
+				}
+			}
+			remove_variable = tribal_to_feudal_building_level
 		}
 		#Nuke tribal authorities.
 		if = {
@@ -1361,8 +1338,11 @@ launch_hungarian_migration_scripted_effect = {
 			}
 			custom_tooltip = launch_hungarian_migration_scripted_effect.tt.pannonia_renamed_and_usurped
 			hidden_effect = {
-				create_title_and_vassal_change = change
-				scope:change = { set_title_and_vassal_change_type = created	}
+				create_title_and_vassal_change = {
+					type = created
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
 				title:k_hungary = {
 					change_title_holder = {
 						holder = $INVADER$
@@ -1462,10 +1442,10 @@ launch_hungarian_migration_scripted_effect = {
 						}
 					}
 				}
-				create_title_and_vassal_change = change
-				scope:change = {
-					set_title_and_vassal_change_type = independency
-					set_add_claim_on_loss = no
+				create_title_and_vassal_change = {
+					type = independency
+					save_scope_as = change
+					add_claim_on_loss = no
 				}
 				becomes_independent = { change = scope:change }
 				resolve_title_and_vassal_change = scope:change
@@ -1482,10 +1462,10 @@ launch_hungarian_migration_scripted_effect = {
 						}
 					}
 				}
-				create_title_and_vassal_change = change
-				scope:change = {
-					set_title_and_vassal_change_type = independency
-					set_add_claim_on_loss = no
+				create_title_and_vassal_change = {
+					type = independency
+					save_scope_as = change
+					add_claim_on_loss = no
 				}
 				becomes_independent = { change = scope:change }
 				resolve_title_and_vassal_change = scope:change
@@ -1578,8 +1558,11 @@ launch_hungarian_migration_scripted_effect = {
 						}
 					}
 					#Hand it to the receiving vassal.
-					create_title_and_vassal_change = change
-					scope:change = { set_title_and_vassal_change_type = granted }
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					every_in_list = {
 						list = multiple_donated_titles
 						save_temporary_scope_as = donated_title
@@ -1635,8 +1618,11 @@ launch_hungarian_migration_scripted_effect = {
 						save_temporary_scope_as = donated_title
 					}
 					#Hand it to the receiving vassal.
-					create_title_and_vassal_change = change
-					scope:change = { set_title_and_vassal_change_type = granted }
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					scope:donated_title = {
 						change_title_holder = {
 							holder = scope:receiving_vassal
@@ -1679,8 +1665,11 @@ launch_hungarian_migration_scripted_effect = {
 						save_temporary_scope_as = donated_title
 					}
 					#Hand it to the receiving vassal.
-					create_title_and_vassal_change = change
-					scope:change = { set_title_and_vassal_change_type = granted }
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					scope:donated_title = {
 						change_title_holder = {
 							holder = scope:receiving_vassal
@@ -1732,8 +1721,11 @@ launch_hungarian_migration_scripted_effect = {
 						save_scope_as = local_warlord
 					}
 					#Assign the seceding titles to the new peasant warlord.
-					create_title_and_vassal_change = change
-					scope:change = { set_title_and_vassal_change_type = usurped }
+					create_title_and_vassal_change = {
+						type = usurped
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					every_in_list = {
 						list = seceding_duchy_list
 						limit = {
@@ -1751,12 +1743,12 @@ launch_hungarian_migration_scripted_effect = {
 					}
 					resolve_title_and_vassal_change = scope:change
 					#And give the warlord their independence.
-					create_title_and_vassal_change = change
+					create_title_and_vassal_change = {
+						type = independency
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					scope:local_warlord = {
-						scope:change = {
-							set_title_and_vassal_change_type = independency
-							set_add_claim_on_loss = no
-						}
 						becomes_independent = { change = scope:change }
 					}
 					resolve_title_and_vassal_change = scope:change
@@ -1796,10 +1788,10 @@ launch_hungarian_migration_scripted_effect = {
 							$INVADER$ = { save_scope_as = appropriate_liege }
 						}
 						#Reassign the errant vassal back to their rightful Pannonian realm.
-						create_title_and_vassal_change = change
-						scope:change = {
-							set_title_and_vassal_change_type = conquest
-							set_add_claim_on_loss = no
+						create_title_and_vassal_change = {
+							type = conquest
+							save_scope_as = change
+							add_claim_on_loss = no
 						}
 						change_liege = {
 							liege = scope:appropriate_liege
@@ -1828,8 +1820,11 @@ launch_hungarian_migration_scripted_effect = {
 						save_scope_as = minor_warlord
 					}
 					#Assign the seceding title to the new peasant warlord.
-					create_title_and_vassal_change = change
-					scope:change = { set_title_and_vassal_change_type = usurped }
+					create_title_and_vassal_change = {
+						type = usurped
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					scope:seceding_county = {
 						change_title_holder = {
 							holder = scope:minor_warlord
@@ -1839,12 +1834,12 @@ launch_hungarian_migration_scripted_effect = {
 					}
 					resolve_title_and_vassal_change = scope:change
 					#And give the warlord their independence.
-					create_title_and_vassal_change = change
+					create_title_and_vassal_change = {
+						type = independency
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
 					scope:minor_warlord = {
-						scope:change = {
-							set_title_and_vassal_change_type = independency
-							set_add_claim_on_loss = no
-						}
 						becomes_independent = { change = scope:change }
 					}
 					resolve_title_and_vassal_change = scope:change
