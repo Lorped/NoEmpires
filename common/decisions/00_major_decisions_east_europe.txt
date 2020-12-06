@@ -202,7 +202,7 @@ unite_the_slavs_decision = {
 		}
 		completely_controls_region = custom_slavia
 		OR = {
-## NoEMP ###			has_primary_title = title:e_russia
+			has_primary_title = title:e_russia
 ## NoEMP ###			has_primary_title = title:e_wendish_empire
 ## NoEMP ###			has_primary_title = title:e_carpathia
 			has_primary_title = title:k_poland

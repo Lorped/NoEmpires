@@ -36,7 +36,7 @@ has_mythical_founder_trigger = {
 		OR = { # Rus
 			this = title:k_white_rus
 			this = title:k_ruthenia
-## NoEMP ###			this = title:e_russia
+			this = title:e_russia
 		}
 		OR = { # Arthur
 			this = title:k_england
