@@ -1,0 +1,50 @@
+﻿noemp_on_action_byz_pulse = {
+  trigger = {
+    is_ai = yes
+    highest_held_title_tier >= tier_duchy
+    exists = liege
+    NOT = { liege = this }
+    liege = {
+      has_title = title:e_byzantium
+    }
+    NOT = { has_claim_on = e_byzantium }
+
+    is_adult = yes
+  }
+
+  effect = {
+    random = {
+      chance = 0
+      modifier = {
+        add = 20
+        has_trait = ambitious
+      }
+      modifier = {
+        add = 5
+        intrigue >= 13
+      }
+      modifier = {
+        add = 5
+        martial >= 13
+      }
+      modifier = {
+        add = -10
+        has_trait = content
+      }
+      modifier = {
+        add = -10
+        has_trait = craven
+      }
+      
+      trigger_event = {
+        id = noemp.1001
+
+      }
+    }
+
+
+
+
+  }
+
+}

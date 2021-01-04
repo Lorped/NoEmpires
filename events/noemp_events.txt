@@ -1,0 +1,29 @@
+﻿
+namespace = noemp
+
+
+
+noemp.1001 = {
+
+  type = empty
+  hidden = yes
+
+  trigger = {
+		is_ai = yes
+    highest_held_title_tier >= tier_duchy
+    exists = liege
+		NOT = { liege = this }
+    liege = {
+      has_title = title:e_byzantium
+    }
+    NOT = { has_claim_on = e_byzantium }
+
+    is_adult = yes
+    #has_trait = ambitious
+	}
+
+  immediate = {
+    add_unpressed_claim = e_byzantium
+  }
+
+}
