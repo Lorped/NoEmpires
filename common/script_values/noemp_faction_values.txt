@@ -1,0 +1,8 @@
+﻿###################
+# FACTION VALUES  #
+###################
+
+
+
+
+ elective_war_victory_cooldown = 5

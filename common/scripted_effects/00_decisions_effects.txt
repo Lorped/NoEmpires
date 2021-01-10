@@ -1295,7 +1295,7 @@ special_succession_tanistry_effect = {
 				years = 20
 				target = root
 			}
-			custom = major_decisions.3100.tt_opinion_tanistry
+			custom =noemp_decision.tt.general_opinion
 		}
 	}
 	else = {
@@ -1316,7 +1316,7 @@ special_succession_tanistry_effect = {
 				years = 20
 				target = root
 			}
-			custom = major_decisions.3100.tt_opinion_tanistry
+			custom =noemp_decision.tt.general_opinion
 		}
 	}
 }

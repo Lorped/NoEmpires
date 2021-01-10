@@ -1,0 +1,5 @@
+﻿l_english:
+
+
+
+ CHARACTER_CANNOT_GO_ELECTIVE:0 "[CHARACTER.GetShortUIName|U] already has elective succession law [succession_law|E]"

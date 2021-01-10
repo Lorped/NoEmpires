@@ -1,0 +1,17 @@
+﻿
+
+has_elective_succession_law = {
+	third_not = CHARACTER_CANNOT_GO_ELECTIVE
+}
+
+succession_laws_must_have_valid_culture = {
+	first_not = succession_laws_must_have_valid_culture
+}
+
+not_a_feudal_tribal_kingdom = {
+	third_not = not_a_feudal_tribal_kingdom
+}
+
+noemp_too_late = {
+	third_not = noemp_too_late
+}

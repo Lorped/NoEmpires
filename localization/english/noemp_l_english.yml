@@ -1,0 +1,46 @@
+﻿l_english:
+
+ ELECTIVE_WAR_NAME:0 "War for Elective Succession"
+
+
+ elective_faction_war:0 "Elective Faction"
+
+
+ elective_faction:0 "Elective Succession Faction"
+ elective_faction_desc:0 "Members of the Elective [faction|E] want elective succession for their [realm|E]"
+ elective_faction_short_effect_desc:0 "Wants Elective Succession for their [liege|E]"
+
+ elective_war_victory_defender_desc:0 "Your succession law is now elective"
+ elective_war_victory_desc:0 "The succession law of the [defender.GetPrimaryTitle.GetName] is now elective."
+ elective_war_victory_end_desc:2 "The Elective [faction|E] is disbanded, its members cannot join factions for [SCOPE.ScriptValue('elective_war_victory_cooldown')|0] years."
+ elective_war_white_peace_defender_desc:0 "You get a truce and a [revoke_title_reason|E] against all rebelling vassals."
+ elective_war_white_peace_attacker_desc:0 "[defender.GetShortUIName|U] gets a truce and a [revoke_title_reason|E] against you and all rebelling vassals."
+ elective_war_white_peace_desc:0 "[defender.GetShortUIName|U] gets a truce and a [revoke_title_reason|E] against all rebelling vassals."
+ elective_war_white_peace_end_desc:1 "The Elective [faction|E] is disbanded, its members cannot join factions for [SCOPE.ScriptValue('faction_war_white_peace_cooldown')|0] years."
+ elective_war_defeat_defender_desc:0 "You gain [dread|E], imprison every rebellious vassal and gain a [revoke_title_reason|E] against each of them."
+ elective_war_defeat_attacker_desc:0 "[defender.GetShortUIName|U] imprisons you and every rebellious vassal and gains a [revoke_title_reason|E] against each of you."
+ elective_war_defeat_desc:0 "[defender.GetShortUIName|U] imprisons every rebellious vassal and gains a [revoke_title_reason|E] against each of them."
+ elective_war_defeat_end_desc:2 "The Elective [faction|E] is disbanded, its members cannot join factions for [SCOPE.ScriptValue('faction_war_defeat_cooldown')|0] years."
+
+
+
+ succession_laws_must_have_valid_culture:0 "You do #bold not#! belong to either the $goidelic_group$ or $brythonic_group$ or $north_germanic_group$ [culture_group|E] and you are not $anglo_saxon$"
+
+ not_a_feudal_tribal_kingdom:0 "Your [liege|E] does not have any tribal or feudal Kingdom or Empire"
+
+ noemp_too_late:0 "The time of Elective Kingdoms has gone forever"
+
+
+ FACTION_DEMAND_ELECTIVE:0 "Elective succession Demand"
+ FACTION_DEMAND_ELECTIVE_DESC:0 "[faction_leader.Custom2('AppropriateGreetingNegative', ROOT.Char)]\n\nIt is time for you to recognize the ancient and inalienable rights of your vassals to elige their liege! Accept the demands of the [faction.GetName] or face our swords on the battlefield!"
+ FACTION_DEMAND_ELECTIVE_ACCEPTED:0 "Elective Succession Demands Accepted"
+ FACTION_DEMAND_ELECTIVE_ACCEPTED_DESC:0 "[faction_target.Custom2('AppropriateGreetingNegative', ROOT.Char)]\n\nYour selfish requests to choose a ruler will weaken the Realm as a whole. However, to avoid needless bloodshed I will accept your demands."
+
+ FACTION_DEMAND_ELECTIVE_REFUSED:0 "Elective succession Demands Refused"
+ FACTION_DEMAND_ELECTIVE_REFUSED_DESC:0 "[faction_target.Custom2('AppropriateGreetingNegative', ROOT.Char)]\n\nYour ridiculous attempt at intimidation will never succeed. I am your Liege and my descendants will rule on this Land! You miserable bunch of traitors shall learn your place on the battlefield!"
+ FACTION_DEMAND_ELECTIVE_SEND_DEMAND_NOTIFICATION:0 "Liberty or Death!"
+ FACTION_DEMAND_ELECTIVE_SEND_DEMAND_NOTIFICATION_DESC:0 "The moment has come! The lords of the [faction.GetName] agree that [faction_target.GetName] is a despot who must yield [faction_target.GetHerHis] tyrannic authority over us... at sword point, if need be."
+
+ noemp_faction_demand.0002.tt:0 "Realm succession law changed to elective!"
+
+ noemp_decision.tt.general_opinion:0 "Every vassals"

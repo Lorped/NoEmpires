@@ -1,0 +1,233 @@
+﻿
+
+
+# Triggers as a result of the Elective Faction demand
+elective_faction_war = {
+	group = civil_war
+	ai_only_against_liege = yes
+	allowed_for_character = {
+		scope:attacker = {
+			is_leading_faction_type = elective_faction
+		}
+	}
+
+	allowed_against_character = {
+		scope:attacker = {
+			liege = scope:defender
+		}
+	}
+
+	target_de_jure_regions_above = yes
+
+	valid_to_start = {
+	}
+
+	on_declaration = {
+	}
+
+	on_victory_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:defender = { is_local_player = yes } }
+				desc = elective_war_victory_defender_desc
+			}
+			desc = elective_war_victory_desc
+		}
+		desc = elective_war_victory_end_desc
+
+	}
+
+	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+		scope:defender = {
+			if = {
+				limit = { highest_held_title_tier = tier_empire }
+				every_held_title = {
+					limit = {
+						tier = tier_empire
+						NOR = {
+							has_title_law_flag = advanced_succession_law
+							has_title_law_flag = elective_succession_law
+						}
+					}
+					add_title_law = feudal_elective_succession_law
+				}
+				every_vassal = {
+					add_opinion = {
+						modifier = implemented_traditional_succession_law_opinion
+						#target = root
+						target = scope:defender
+					}
+					custom = noemp_decision.tt.general_opinion
+				}
+			}
+			else = {
+				every_held_title = {
+					limit = {
+						tier = tier_kingdom
+						NOR = {
+							has_title_law_flag = advanced_succession_law
+							has_title_law_flag = elective_succession_law
+						}
+					}
+					add_title_law = feudal_elective_succession_law
+				}
+				every_vassal = {
+					add_opinion = {
+						modifier = implemented_traditional_succession_law_opinion
+						#target = root
+						target = scope:defender
+					}
+					custom = noemp_decision.tt.general_opinion
+				}
+			}
+
+			add_character_flag = {
+				flag = recent_elective_faction_war
+				years = 5
+			}
+
+			add_prestige = -500
+
+		}
+
+		hidden_effect = {
+			scope:attacker = {
+				add_truce_both_ways = {
+					character = scope:defender
+					days = 1825
+					war = root.war
+					result = victory
+				}
+				joined_faction = {
+					save_scope_as = saved_faction
+					add_faction_discontent = -200
+					every_faction_member = {
+						if = {
+							limit = {
+								exists = scope:attacker.joined_faction # Can get destroyed as we loop through
+							}
+							leave_faction_with_cooldown_effect = {
+								FACTION = scope:attacker.joined_faction
+								YEARS = elective_war_victory_cooldown
+							}
+						}
+						else = {
+							add_faction_cooldown_effect = { YEARS = elective_war_victory_cooldown }
+						}
+					}
+				}
+				# The faction should have already been destroyed due to all members leaving above, but in case it hasn't, destroy it now.
+				if = {
+					limit = { exists = scope:saved_faction }
+					scope:saved_faction = {
+						destroy_faction = yes
+					}
+				}
+			}
+		}
+	}
+
+	on_white_peace_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:defender = { is_local_player = yes } }
+				desc = elective_war_white_peace_defender_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:attacker.joined_faction = {
+						any_faction_member = { is_local_player = yes }
+					}
+				}
+				desc = elective_war_white_peace_attacker_desc
+			}
+			desc = elective_war_white_peace_desc
+		}
+		desc = elective_war_white_peace_end_desc
+
+	}
+
+	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+		hidden_effect = {
+			scope:attacker = {
+				add_truce_both_ways = {
+					character = scope:defender
+					days = 1825
+					war = root.war
+					result = white_peace
+				}
+				joined_faction = {
+					add_faction_discontent = -200
+				}
+			}
+		}
+		scope:defender = {
+			add_character_flag = {
+				flag = recent_elective_faction_war
+				years = faction_war_white_peace_cooldown
+			}
+		}
+		on_white_peace_faction_revolt_war = yes
+	}
+
+	on_defeat_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:defender = { is_local_player = yes } }
+				desc = elective_war_defeat_defender_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:attacker.joined_faction = {
+						any_faction_member = { is_local_player = yes }
+					}
+				}
+				desc = elective_war_defeat_attacker_desc
+			}
+			desc = elective_war_defeat_desc
+		}
+		desc = elective_war_defeat_end_desc
+
+	}
+
+	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+		scope:defender = {
+			add_character_flag = {
+				flag = recent_elective_faction_war
+				years = faction_war_defeat_cooldown
+			}
+			add_dread = medium_dread_gain
+			add_achievement_flag = { FLAG = achievement_know_your_place_flag }
+		}
+		on_lost_faction_revolt_war = yes
+	}
+
+	on_invalidated_desc = msg_invalidate_war_title
+
+	check_attacker_inheritance_validity = no
+
+	on_primary_attacker_death = inherit_faction
+	on_primary_defender_death = inherit
+
+	transfer_behavior = transfer
+
+	attacker_allies_inherit = no
+	defender_allies_inherit = yes
+
+	war_name = "ELECTIVE_WAR_NAME"
+
+	interface_priority = 80
+
+	use_de_jure_wargoal_only = yes
+
+	attacker_wargoal_percentage = 0.8
+
+	max_attacker_score_from_battles = 100
+	max_defender_score_from_battles = 50
+
+	max_ai_diplo_distance_to_title = 500
+	min_ai_score = 100
+}
